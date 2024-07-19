@@ -1,5 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import Particle from "./Particules";
 import TextEffect from "./TextEffect";
 import Image from "next/image";
 import SocialIcon from "./SocialIcon";
@@ -8,7 +8,6 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 const Hero = () => {
   return (
     <div className="min-h-[88vh] flex items-center pt-[5rem]">
-      {/* <Particle /> */}
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] items-center">
         <div>
           <span className="text-[15px] text-white"> Hi There, I'm </span>
@@ -29,12 +28,12 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px]">
+        <div className="w-[500px]  hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px]">
           <Image
             src="/images/100953616.jpeg"
             alt="user"
             layout="fill"
-            className="object-cover rounded-full"
+            className="object-cover rounded-full "
           />
         </div>
       </div>

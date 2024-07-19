@@ -5,6 +5,8 @@ import MobileNav from "./components/MobileNav";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import ParticleBackground from "./components/ParticleBackground";
+import Services from "./components/Services";
+import Projects from "./components/Projects";
 
 const HomePage = () => {
   const [nav, setNav] = useState(false);
@@ -19,6 +21,8 @@ const HomePage = () => {
         <ParticleBackground>
           <Hero />
           <About />
+          <Services />
+          <Projects />
         </ParticleBackground>
       </div>
     </div>
