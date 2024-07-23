@@ -1,18 +1,85 @@
 import React from "react";
 import Card from "./Card";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import GIthubIcon from "./svg/GIthubIcon";
+import LinkIcon from "./svg/LinkIcon";
 
 const projects = [
   {
     title: "School: Website for Elect High School",
     description:
-      "Developed a secure medical appointment management platform with CRUD functionality, utilizing role-based access control, encryption techniques, and a robust MySQL database with normalized schema design and stored procedures for efficient scheduling, data privacy, and reliable retrieval of patient records.",
+      "Developed a high school website using React, Tailwind CSS, and MongoDB, providing a dynamic user experience, responsive design, and efficient data management. The platform includes secure role-based access control and CRUD functionality for managing student records and schedules.",
     technologies: ["React", "Tailwind", "MongoDB"],
     links: [
-      { href: "https://github.com/Gbengar/school", Icon: FaGithub },
+      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
       {
         href: "https://electintellectualschool.vercel.app/",
-        Icon: FaExternalLinkAlt,
+        Icon: LinkIcon,
+      },
+    ],
+  },
+  {
+    title: "School: Website for Elect High School",
+    description:
+      "I developed a MERN Fitness company store, similar to Amazon, but focused on gym equipment. Users can register, purchase, and schedule equipment, with features like customer reviews and discounts. The store offers a wide selection of exercise and fitness products, with a holistic fitness experience through scheduled appointments with trainers or fitness professionals.",
+    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+    links: [
+      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
+      {
+        href: "https://prediction-app-frontend.vercel.app/",
+        Icon: LinkIcon,
+      },
+    ],
+  },
+  {
+    title: "Fitness Store: Website for Endurance Athletics",
+    description:
+      "I built a MERN Fitness company store, The store also serves as an amazzon like company that deals with gym equipment, users register and can buy and schedule .",
+    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+    links: [
+      { href: "https://github.com/Gbengar/Fitness-App", Icon: GIthubIcon },
+      {
+        href: "https://fitness-app-frontend-six.vercel.app/",
+        Icon: LinkIcon,
+      },
+    ],
+  },
+  {
+    title: "School: Website for Elect High School",
+    description:
+      "I built a MERN Finance Dashboard App that incorporates Machine Learning Predictions. The frontend, i used Vite as my starter app, Redux Toolkit for state management, Material UI for component library, and Recharts for creating interactive charts. On the backend, I've chosen Node.js as my runtime.",
+    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+    links: [
+      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
+      {
+        href: "https://prediction-app-frontend.vercel.app/",
+        Icon: LinkIcon,
+      },
+    ],
+  },
+  {
+    title: "School: Website for Elect High School",
+    description:
+      "I built a MERN Finance Dashboard App that incorporates Machine Learning Predictions. The frontend, i used Vite as my starter app, Redux Toolkit for state management, Material UI for component library, and Recharts for creating interactive charts. On the backend, I've chosen Node.js as my runtime.",
+    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+    links: [
+      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
+      {
+        href: "https://prediction-app-frontend.vercel.app/",
+        Icon: LinkIcon,
+      },
+    ],
+  },
+  {
+    title: "School: Website for Elect High School",
+    description:
+      "I built a MERN Finance Dashboard App that incorporates Machine Learning Predictions. The frontend, i used Vite as my starter app, Redux Toolkit for state management, Material UI for component library, and Recharts for creating interactive charts. On the backend, I've chosen Node.js as my runtime.",
+    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+    links: [
+      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
+      {
+        href: "https://prediction-app-frontend.vercel.app/",
+        Icon: LinkIcon,
       },
     ],
   },
@@ -34,7 +101,6 @@ const Projects = () => {
               technologies={project.technologies}
               links={project.links}
             />
-            s
           </div>
         ))}
       </div>

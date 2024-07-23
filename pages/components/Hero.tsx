@@ -7,7 +7,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
 const Hero = () => {
   return (
-    <div className="min-h-[88vh] flex items-center pt-[5rem]">
+    <div className=" flex items-center pt-[5rem]">
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] items-center">
         <div>
           <span className="text-[15px] text-white"> Hi There, I'm </span>

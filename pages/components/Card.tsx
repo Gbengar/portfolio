@@ -2,6 +2,7 @@
 import React from "react";
 import { IconType } from "react-icons";
 import { FaFolder, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import FolderIcon from "./svg/FolderIcon";
 
 interface Link {
   href: string;
@@ -22,9 +23,9 @@ const Card: React.FC<CardProps> = ({
   links,
 }) => {
   return (
-    <div className="backdrop-blur-lg bg-white/30 rounded-lg	  transform transition-all duration-300    p-3	">
+    <div className="backdrop-blur-lg bg-black rounded-lg	  transform transition-all duration-300    p-3	">
       <div className="flex justify-between items-center mb-2">
-        <FaFolder className="text-green-500 text-2xl" />
+        <FolderIcon />
         <div className="flex space-x-3">
           {links.map((link, index) => (
             <a
@@ -39,11 +40,11 @@ const Card: React.FC<CardProps> = ({
           ))}
         </div>
       </div>
-      <h3 className="text-sm font-bold mb-2">{title} </h3>
-      <p className="text-gray-400 mb-4 text-sm	">{description}</p>
+      <h3 className="text-base	pb-3 font-bold mb-2 text-white">{title} </h3>
+      <p className="text-white mb-4 text-sm	">{description}</p>
       <div className="flex space-x-2 text-gray-500">
         {technologies.map((tech, index) => (
-          <span key={index} className="bg-gray-700 px-2 py-1 rounded">
+          <span key={index} className=" px-2 py-1  text-xs	">
             {tech}
           </span>
         ))}
