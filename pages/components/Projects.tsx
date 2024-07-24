@@ -39,16 +39,21 @@ const projects = [
     links: [
       { href: "https://github.com/Gbengar/Fitness-App", Icon: GIthubIcon },
       {
-        href: "https://fitness-app-frontend-six.vercel.app/",
+        href: "https://fitness-app-frontend-virid.vercel.app/",
         Icon: LinkIcon,
       },
     ],
   },
   {
-    title: "School: Website for Elect High School",
+    title: "Storybook App: Post and View User Stories",
     description:
-      "I built a MERN Finance Dashboard App that incorporates Machine Learning Predictions. The frontend, i used Vite as my starter app, Redux Toolkit for state management, Material UI for component library, and Recharts for creating interactive charts. On the backend, I've chosen Node.js as my runtime.",
-    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+      "I developed a Storybook App where users can post stories, and other users can view them. This app leverages the MERN (MongoDB, Express.js, React, Node.js) stack to create an efficient and scalable platform.",
+    technologies: [
+      "express-handlebars",
+      "passport",
+      "google-oauth20",
+      "morgan",
+    ],
     links: [
       { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
       {
