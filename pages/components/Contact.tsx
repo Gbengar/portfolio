@@ -22,8 +22,8 @@ const Contact = () => {
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Contact
         </h2>
-        <p className="mt-2 text-lg leading-8 text-red-700">
-          Ready to get started on your project?
+        <p className="mt-2 text-lg leading-8 text-green-700">
+          Ready to get started on your project? Contact me now
         </p>
       </div>
       <form

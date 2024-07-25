@@ -8,6 +8,7 @@ import ParticleBackground from "./components/ParticleBackground";
 import Services from "./components/Services";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 const HomePage = () => {
   const [nav, setNav] = useState(false);
@@ -26,6 +27,7 @@ const HomePage = () => {
           <Projects />
           <Contact />
         </ParticleBackground>
+        <Footer />
       </div>
     </div>
   );
