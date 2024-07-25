@@ -21,25 +21,26 @@ const projects = [
   {
     title: "School: Website for Elect High School",
     description:
-      "I developed a MERN Fitness company store, similar to Amazon, but focused on gym equipment. Users can register, purchase, and schedule equipment, with features like customer reviews and discounts. The store offers a wide selection of exercise and fitness products, with a holistic fitness experience through scheduled appointments with trainers or fitness professionals.",
-    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+      "I developed a MERN Fitness store for gym equipment, offering user registration, purchases, scheduling, customer reviews, and discounts. The store features a wide selection of fitness products and allows scheduling appointments with trainers for a holistic fitness experience.",
+    technologies: ["react-redux", "react-select", "MERN", "sass", "timeago.js"],
+
     links: [
-      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
+      { href: "https://github.com/Gbengar/Fitness-App", Icon: GIthubIcon },
       {
-        href: "https://prediction-app-frontend.vercel.app/",
+        href: "https://fitness-app-frontend-virid.vercel.app/",
         Icon: LinkIcon,
       },
     ],
   },
   {
-    title: "Fitness Store: Website for Endurance Athletics",
+    title: "MERN Finance Dashboard App",
     description:
-      "I built a MERN Fitness company store, The store also serves as an amazzon like company that deals with gym equipment, users register and can buy and schedule .",
+      "I built a MERN Finance Dashboard App with Machine Learning predictions. The frontend uses Vite, Redux Toolkit, Material UI, and Recharts for charts. The backend uses Node.js, Express.js, and MongoDB. This setup ensures efficient state management, interactive visuals, and robust server performance.",
     technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
     links: [
-      { href: "https://github.com/Gbengar/Fitness-App", Icon: GIthubIcon },
+      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
       {
-        href: "https://fitness-app-frontend-virid.vercel.app/",
+        href: "https://prediction-app-frontend.vercel.app/",
         Icon: LinkIcon,
       },
     ],
@@ -55,39 +56,34 @@ const projects = [
       "morgan",
     ],
     links: [
-      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
       {
-        href: "https://prediction-app-frontend.vercel.app/",
+        href: "https://github.com/Gbengar/travesty_CRUD_DEMO",
+        Icon: GIthubIcon,
+      },
+      {
+        href: "https://storybook-demo.onrender.com/",
         Icon: LinkIcon,
       },
     ],
   },
+
   {
-    title: "School: Website for Elect High School",
+    title: "Applaza: Event scheduling app",
     description:
-      "I built a MERN Finance Dashboard App that incorporates Machine Learning Predictions. The frontend, i used Vite as my starter app, Redux Toolkit for state management, Material UI for component library, and Recharts for creating interactive charts. On the backend, I've chosen Node.js as my runtime.",
-    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+      "I built a MERN business application where users can register, log in, and manage event scheduling. It features calendar integration for holidays of all countries, meeting scheduling, and recurring events for over 10 years. Users can add events with others if they follow each other.",
+    technologies: ["MERN", "rc-rate", "react-redux", "timeago.js"],
     links: [
-      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
       {
-        href: "https://prediction-app-frontend.vercel.app/",
+        href: "https://github.com/Gbengar/backup-main-project",
+        Icon: GIthubIcon,
+      },
+      {
+        href: "https://backup-main-project-frontend.vercel.app/",
         Icon: LinkIcon,
       },
     ],
   },
-  {
-    title: "School: Website for Elect High School",
-    description:
-      "I built a MERN Finance Dashboard App that incorporates Machine Learning Predictions. The frontend, i used Vite as my starter app, Redux Toolkit for state management, Material UI for component library, and Recharts for creating interactive charts. On the backend, I've chosen Node.js as my runtime.",
-    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
-    links: [
-      { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
-      {
-        href: "https://prediction-app-frontend.vercel.app/",
-        Icon: LinkIcon,
-      },
-    ],
-  },
+
   // Add more project objects here
 ];
 

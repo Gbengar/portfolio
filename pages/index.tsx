@@ -7,6 +7,7 @@ import About from "./components/About";
 import ParticleBackground from "./components/ParticleBackground";
 import Services from "./components/Services";
 import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 
 const HomePage = () => {
   const [nav, setNav] = useState(false);
@@ -23,6 +24,7 @@ const HomePage = () => {
           <About />
           <Services />
           <Projects />
+          <Contact />
         </ParticleBackground>
       </div>
     </div>
