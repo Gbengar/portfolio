@@ -4,6 +4,7 @@ import TextEffect from "./TextEffect";
 import Image from "next/image";
 import SocialIcon from "./SocialIcon";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
+// import Header from "../../public/images/100953616.jpg";
 
 const Hero = () => {
   return (
@@ -22,15 +23,18 @@ const Hero = () => {
             </button>
 
             <div className="space-y-4 mt-4">
-              <div className="space-x-4">
+              <div className="space-x-4" data-aos="fade-up-right">
                 <SocialIcon />
               </div>
             </div>
           </div>
         </div>
-        <div className="w-[500px]  hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px]">
+        <div
+          data-aos="zoom-in"
+          className="w-[500px]  hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px]"
+        >
           <Image
-            src="/images/100953616.jpeg"
+            src={"/images/100953616.jpeg"}
             alt="user"
             layout="fill"
             className="object-cover rounded-full "

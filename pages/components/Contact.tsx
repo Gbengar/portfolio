@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Field, Label, Switch } from "@headlessui/react";
+import { DevicePhoneMobileIcon } from "@heroicons/react/20/solid";
+import { EnvelopeIcon } from "@heroicons/react/20/solid";
 
 const Contact = () => {
   const [agreed, setAgreed] = useState(false);
@@ -26,6 +28,31 @@ const Contact = () => {
           Ready to get started on your project? Contact me now
         </p>
       </div>
+      <div className="flex justify-center items-center space-x-4">
+        <div className="relative inline-flex group">
+          <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+          <button
+            title="Get quote now"
+            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            role="button"
+          >
+            <EnvelopeIcon className="md:w-[2rem] md:h-[2rem] w-[2rem] h-[2rem] text-white" />
+            <span className="ml-2">oshagbemigbenga@gmail.com</span>
+          </button>
+        </div>
+        <div className="relative inline-flex group">
+          <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+          <button
+            title="Get quote now"
+            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            role="button"
+          >
+            <DevicePhoneMobileIcon className="md:w-[2rem] md:h-[2rem] w-[2rem] h-[2rem] text-white" />
+            <span className="ml-2">+2348033080613</span>
+          </button>
+        </div>
+      </div>
+
       <form
         action="#"
         method="POST"

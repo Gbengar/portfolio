@@ -14,19 +14,11 @@ const LinkIcon = () => {
         <path
           fill="black"
           stroke="white"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-miterlimit="10"
-          stroke-width="3"
           d="M6.5,20.5v-5c0-3.3,2.7-6,6-6h10"
         ></path>
         <path
           fill="black"
           stroke="white"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-miterlimit="10"
-          stroke-width="3"
           d="M38.5,25.5v10c0,3.3-2.7,6-6,6h-20c-3.3,0-6-2.7-6-6v-7"
         ></path>
         <line
@@ -36,18 +28,10 @@ const LinkIcon = () => {
           y2="6.5"
           fill="black"
           stroke="white"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-miterlimit="10"
-          stroke-width="3"
         ></line>
         <polyline
           fill="black"
           stroke="white"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-miterlimit="10"
-          stroke-width="3"
           points="27.5,6.5 41.5,6.5 41.5,20.5"
         ></polyline>
       </svg>
