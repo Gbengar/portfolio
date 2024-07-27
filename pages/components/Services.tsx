@@ -1,16 +1,48 @@
 import { RocketLaunchIcon } from "@heroicons/react/20/solid";
 import { CommandLineIcon } from "@heroicons/react/20/solid";
 import { CodeBracketSquareIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const Services = () => {
+  const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
+
+  useEffect(() => {
+    animatedElementsRef.current =
+      document.querySelectorAll(".services-animate");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(
+              "animate__animated",
+              "animate__jackInTheBox"
+            );
+          } else {
+            entry.target.classList.remove(
+              "animate__animated",
+              "animate__jackInTheBox"
+            );
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    animatedElementsRef.current.forEach((el) => observer.observe(el));
+    return () => {
+      if (animatedElementsRef.current) {
+        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
+      }
+    };
+  }, []);
   return (
     <div className="min-h-[88vh] pt-[4rem] md:pt-[8rem] pb-[2rem]">
       <p className="heading ">
         My <span className="text-yellow-400">Services</span>
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[80%] mx-auto items-center gap-[3rem] mt-[4rem] text-white">
-        <div className="backdrop-blur-sm bg-white/30 rounded-lg	 hover:scale-110  transform transition-all duration-300 hover:rotate-6  font-semibold text-center p-[2rem]">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[80%] mx-auto items-center gap-[3rem] mt-[4rem] text-white">
+        <div className="services-animate  backdrop-blur-sm bg-white/30 rounded-lg	 hover:scale-110  transform transition-all duration-300 hover:rotate-6  font-semibold text-center p-[2rem]">
           <CodeBracketSquareIcon className="w-[3rem] h-[3rem] mx-auto text-[#d3fae8]" />
           <h1 className="text-[20px] md:text-[30px] mt-[1.5rem] mb-[1.5rem]">
             Frontend
@@ -23,7 +55,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="backdrop-blur-sm bg-white/30 rounded-lg	 hover:scale-110 transform cursor-pointer	 transition-all duration-300 hover:rotate-6  font-semibold text-center p-[2rem]">
+        <div className="services-animate  backdrop-blur-sm bg-white/30 rounded-lg	 hover:scale-110 transform cursor-pointer	 transition-all duration-300 hover:rotate-6  font-semibold text-center p-[2rem]">
           <CommandLineIcon className="w-[3rem] h-[3rem] mx-auto text-[#d3fae8]" />
           <h1 className="text-[20px] md:text-[30px] mt-[1.5rem] mb-[1.5rem]">
             Backend
@@ -36,7 +68,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="backdrop-blur-sm bg-white/30 rounded-lg	 hover:scale-110 transform cursor-pointer	 transition-all duration-300 hover:rotate-6  font-semibold text-center p-[2rem]">
+        <div className="services-animate  backdrop-blur-sm bg-white/30 rounded-lg	 hover:scale-110 transform cursor-pointer	 transition-all duration-300 hover:rotate-6  font-semibold text-center p-[2rem]">
           <RocketLaunchIcon className="w-[3rem] h-[3rem] mx-auto text-[#d3fae8]" />
           <h1 className="text-[20px] md:text-[30px] mt-[1.5rem] mb-[1.5rem]">
             Fullstack

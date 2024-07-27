@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 
 const About = () => {
   const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
+  const animatedParagraphRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     animatedElementsRef.current = document.querySelectorAll(".about-animate");
@@ -11,15 +12,29 @@ const About = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add(
-              "animate__animated",
-              "animate__fadeInRight"
-            );
+            if (entry.target.tagName.toLowerCase() === "p") {
+              entry.target.classList.add(
+                "animate__animated",
+                "animate__fadeInLeft"
+              );
+            } else {
+              entry.target.classList.add(
+                "animate__animated",
+                "animate__fadeInRight"
+              );
+            }
           } else {
-            entry.target.classList.remove(
-              "animate__animated",
-              "animate__fadeInRight"
-            );
+            if (entry.target.tagName.toLowerCase() === "p") {
+              entry.target.classList.remove(
+                "animate__animated",
+                "animate__fadeInLeft"
+              );
+            } else {
+              entry.target.classList.remove(
+                "animate__animated",
+                "animate__fadeInRight"
+              );
+            }
           }
         });
       },
@@ -27,9 +42,16 @@ const About = () => {
     );
 
     animatedElementsRef.current.forEach((el) => observer.observe(el));
+    if (animatedParagraphRef.current) {
+      observer.observe(animatedParagraphRef.current);
+    }
+
     return () => {
       if (animatedElementsRef.current) {
         animatedElementsRef.current.forEach((el) => observer.unobserve(el));
+      }
+      if (animatedParagraphRef.current) {
+        observer.unobserve(animatedParagraphRef.current);
       }
     };
   }, []);
@@ -46,7 +68,10 @@ const About = () => {
           </h2>
           <div className="mb-[3rem] flex items-center md:space-x-10">
             <span className="w-[100px] hidden md:block h-[5px] bg-slate-400 rounded-sm"></span>
-            <p className="text-[19px] text-slate-300 w-[80%]">
+            <p
+              ref={animatedParagraphRef}
+              className="text-[19px] text-slate-300 w-[80%]"
+            >
               I am a trained banker turned engineer, driven by the potential of
               IT to enhance financial services, particularly in developing
               countries with limited internet access. <br /> <br />

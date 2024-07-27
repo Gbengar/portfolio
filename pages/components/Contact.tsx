@@ -68,10 +68,10 @@ const Contact = () => {
           <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
           <button
             title="Get quote now"
-            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            className="relative inline-flex items-center justify-center w-[300px] h-[50px] text-sm font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
             role="button"
           >
-            <EnvelopeIcon className="md:w-[2rem] md:h-[2rem] w-[2rem] h-[2rem] text-white" />
+            <EnvelopeIcon className="w-[1.5rem] h-[1.5rem] text-white" />
             <span className="ml-2">oshagbemigbenga@gmail.com</span>
           </button>
         </div>
@@ -79,10 +79,10 @@ const Contact = () => {
           <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
           <button
             title="Get quote now"
-            className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            className="relative inline-flex items-center justify-center w-[300px] h-[50px] text-sm font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
             role="button"
           >
-            <DevicePhoneMobileIcon className="md:w-[2rem] md:h-[2rem] w-[2rem] h-[2rem] text-white" />
+            <DevicePhoneMobileIcon className="w-[1.5rem] h-[1.5rem] text-white" />
             <span className="ml-2">+2348033080613</span>
           </button>
         </div>
@@ -179,28 +179,6 @@ const Contact = () => {
               />
             </div>
           </div>
-          <Field className="flex gap-x-4 sm:col-span-2">
-            <div className="flex h-6 items-center">
-              <Switch
-                checked={agreed}
-                onChange={setAgreed}
-                className="group flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 data-[checked]:bg-indigo-600"
-              >
-                <span className="sr-only">Agree to policies</span>
-                <span
-                  aria-hidden="true"
-                  className="h-4 w-4 transform rounded-full bg-black shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out group-data-[checked]:translate-x-3.5"
-                />
-              </Switch>
-            </div>
-            <Label className="text-sm leading-6 text-gray-600">
-              By selecting this, you agree to our{" "}
-              <a href="#" className="font-semibold text-indigo-600">
-                privacy&nbsp;policy
-              </a>
-              .
-            </Label>
-          </Field>
         </div>
         <div className="mt-10">
           <button

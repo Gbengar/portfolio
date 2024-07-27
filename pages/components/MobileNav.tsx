@@ -33,6 +33,15 @@ const MobileNav = ({ nav, closeNav }: Props) => {
           About Me
         </ScrollLink>
         <ScrollLink
+          to="services"
+          smooth={true}
+          duration={500}
+          className="nav-link-mobile cursor-pointer"
+          onClick={closeNav}
+        >
+          Services
+        </ScrollLink>
+        <ScrollLink
           to="projects"
           smooth={true}
           duration={500}
@@ -50,15 +59,13 @@ const MobileNav = ({ nav, closeNav }: Props) => {
         >
           Contact
         </ScrollLink>
-        <ScrollLink
-          to="resume"
-          smooth={true}
-          duration={500}
+        <a
+          href="/GbengaCV.pdf"
           className="nav-link-mobile cursor-pointer"
           onClick={closeNav}
         >
           Resume
-        </ScrollLink>
+        </a>
       </div>
       <div
         onClick={closeNav}

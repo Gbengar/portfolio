@@ -6,35 +6,56 @@ import SocialIcon from "./SocialIcon";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
 const Hero = ({}) => {
-  const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
+  const animatedImageRef = useRef<HTMLDivElement>(null);
+  const animatedSocialIconRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    animatedElementsRef.current = document.querySelectorAll(".hero-animate");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add(
-              "animate__animated",
-              "animate__bounceIn"
-            );
+            if (entry.target === animatedImageRef.current) {
+              entry.target.classList.add(
+                "animate__animated",
+                "animate__bounceIn"
+              );
+            } else if (entry.target === animatedSocialIconRef.current) {
+              entry.target.classList.add(
+                "animate__animated",
+                "animate__fadeInDown"
+              );
+            }
           } else {
-            entry.target.classList.remove(
-              "animate__animated",
-              "animate__bounceIn"
-            );
+            if (entry.target === animatedImageRef.current) {
+              entry.target.classList.remove(
+                "animate__animated",
+                "animate__bounceIn"
+              );
+            } else if (entry.target === animatedSocialIconRef.current) {
+              entry.target.classList.remove(
+                "animate__animated",
+                "animate__fadeInDown"
+              );
+            }
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    animatedElementsRef.current.forEach((el) => observer.observe(el));
+    if (animatedImageRef.current) {
+      observer.observe(animatedImageRef.current);
+    }
+    if (animatedSocialIconRef.current) {
+      observer.observe(animatedSocialIconRef.current);
+    }
 
     return () => {
-      if (animatedElementsRef.current) {
-        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
+      if (animatedImageRef.current) {
+        observer.unobserve(animatedImageRef.current);
+      }
+      if (animatedSocialIconRef.current) {
+        observer.unobserve(animatedSocialIconRef.current);
       }
     };
   }, []);
@@ -50,18 +71,19 @@ const Hero = ({}) => {
           <TextEffect />
           <div className="mt-[2rem] flex-col space-y-6 sm:space-y-0 sm:space-x-6">
             <button className="px-[2rem] hover:bg-yellow-400 transition-all duration-200 py-[1rem] text-[18px] font-bold uppercase bg-[#55e6a5] text-black flex items-center space-x-2">
-              <p> Download Cv</p>
+              <a href="/GbengaCV.pdf"> My Resume</a>
               <ArrowDownTrayIcon className="w-[1.6rem] h-[1.7rem] text-black" />
             </button>
             <div className="space-y-4 mt-4">
-              <div className="space-x-4" data-aos="fade-up-right">
+              <div ref={animatedSocialIconRef} className="space-x-4">
                 <SocialIcon />
               </div>
             </div>
           </div>
         </div>
         <div
-          className="w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] hero-animate"
+          ref={animatedImageRef}
+          className="w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px]"
           style={{ position: "relative" }}
         >
           <Image
