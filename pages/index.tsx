@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import MobileNav from "./components/MobileNav";
 import Hero from "./components/Hero";
@@ -7,48 +7,12 @@ import ParticleBackground from "./components/ParticleBackground";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Services from "./components/Services";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const [nav, setNav] = useState(false);
   const openNav = () => setNav(true);
   const closeNav = () => setNav(false);
-
-  useEffect(() => {
-    AOS.init({
-      disable: false,
-      startEvent: "DOMContentLoaded",
-      initClassName: "aos-init",
-      animatedClassName: "aos-animate",
-      useClassNames: false,
-      disableMutationObserver: false,
-      debounceDelay: 50,
-      throttleDelay: 99,
-      offset: 120,
-      delay: 0,
-      duration: 1000,
-      easing: "ease",
-      once: false,
-      mirror: false,
-      anchorPlacement: "top-bottom",
-    });
-
-    const handleImageLoad = () => {
-      AOS.refresh();
-    };
-
-    const image = document.querySelector("img");
-    if (image) {
-      image.addEventListener("load", handleImageLoad);
-    }
-
-    return () => {
-      if (image) {
-        image.removeEventListener("load", handleImageLoad);
-      }
-    };
-  }, []);
 
   return (
     <div className="overflow-x-hidden">
@@ -61,6 +25,9 @@ const HomePage = () => {
           </section>
           <section id="about">
             <About />
+          </section>
+          <section id="services">
+            <Services />
           </section>
           <section id="projects">
             <Projects />

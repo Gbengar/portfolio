@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useRef } from "react";
 import { Field, Label, Switch } from "@headlessui/react";
 import { DevicePhoneMobileIcon } from "@heroicons/react/20/solid";

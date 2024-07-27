@@ -1,7 +1,39 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const About = () => {
+  const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
+
+  useEffect(() => {
+    animatedElementsRef.current = document.querySelectorAll(".about-animate");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(
+              "animate__animated",
+              "animate__fadeInRight"
+            );
+          } else {
+            entry.target.classList.remove(
+              "animate__animated",
+              "animate__fadeInRight"
+            );
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    animatedElementsRef.current.forEach((el) => observer.observe(el));
+    return () => {
+      if (animatedElementsRef.current) {
+        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-[88vh] pb-[3rem] pt-[10rem] md:pt-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-2 w-[80%] mx-auto gap-[3rem] items-center">
@@ -24,7 +56,7 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[400px] w-[300px] h-[300px] relative animate__fadeInRight">
+        <div className="lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[400px] w-[300px] h-[300px] relative about-animate">
           <Image
             src="/images/unnamed.jpg"
             alt="user"

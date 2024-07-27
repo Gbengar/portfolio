@@ -1,11 +1,44 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import TextEffect from "./TextEffect";
 import Image from "next/image";
 import SocialIcon from "./SocialIcon";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 
-const Hero = () => {
+const Hero = ({}) => {
+  const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
+
+  useEffect(() => {
+    animatedElementsRef.current = document.querySelectorAll(".hero-animate");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(
+              "animate__animated",
+              "animate__bounceIn"
+            );
+          } else {
+            entry.target.classList.remove(
+              "animate__animated",
+              "animate__bounceIn"
+            );
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    animatedElementsRef.current.forEach((el) => observer.observe(el));
+
+    return () => {
+      if (animatedElementsRef.current) {
+        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
+      }
+    };
+  }, []);
+
   return (
     <div className="flex items-center pt-[5rem]">
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] items-center">
@@ -28,8 +61,7 @@ const Hero = () => {
           </div>
         </div>
         <div
-          data-aos="zoom-in"
-          className="w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] animate__zoomIn"
+          className="w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] hero-animate"
           style={{ position: "relative" }}
         >
           <Image
