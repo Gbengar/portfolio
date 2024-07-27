@@ -1,10 +1,44 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Field, Label, Switch } from "@headlessui/react";
 import { DevicePhoneMobileIcon } from "@heroicons/react/20/solid";
 import { EnvelopeIcon } from "@heroicons/react/20/solid";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [agreed, setAgreed] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
+      process.env.NEXT_PUBLIC_EMAILJS_USER_ID &&
+      form.current
+    ) {
+      const formData = new FormData(form.current);
+      const to_name = `${formData.get("firstname")} ${formData.get(
+        "lastname"
+      )}`;
+      formData.set("to_name", to_name);
+
+      emailjs
+        .sendForm(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+          form.current,
+          process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+        )
+        .then(
+          (result) => {
+            alert("Message sent successfully!");
+          },
+          (error) => {
+            alert("Failed to send the message, please try again.");
+          }
+        );
+    }
+  };
 
   return (
     <div className="isolate px-6 py-16 sm:py-24 lg:px-8 bg-inherit">
@@ -28,7 +62,7 @@ const Contact = () => {
           Ready to get started on your project? Contact me now
         </p>
       </div>
-      <div className="flex justify-center items-center space-x-4">
+      <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="relative inline-flex group">
           <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
           <button
@@ -54,8 +88,8 @@ const Contact = () => {
       </div>
 
       <form
-        action="#"
-        method="POST"
+        ref={form}
+        onSubmit={sendEmail}
         className="mx-auto mt-10 max-w-xl sm:mt-14"
       >
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -69,7 +103,7 @@ const Contact = () => {
             <div className="mt-2.5">
               <input
                 id="first-name"
-                name="first-name"
+                name="firstname"
                 type="text"
                 autoComplete="given-name"
                 className="block w-full rounded-md border  bg-inherit px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -86,7 +120,7 @@ const Contact = () => {
             <div className="mt-2.5">
               <input
                 id="last-name"
-                name="last-name"
+                name="lastname"
                 type="text"
                 autoComplete="family-name"
                 className="block w-full rounded-md border  bg-inherit px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -120,7 +154,7 @@ const Contact = () => {
             <div className="relative mt-2.5">
               <input
                 id="phone-number"
-                name="phone-number"
+                name="phone_no"
                 type="tel"
                 autoComplete="tel"
                 className="block w-full rounded-md border  bg-inherit px-3.5 py-2 pl-20 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

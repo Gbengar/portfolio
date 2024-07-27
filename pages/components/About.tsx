@@ -24,10 +24,7 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div
-          data-aos="fade-left"
-          className="lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[400px] w-[300px] h-[300px] relative"
-        >
+        <div className="lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[400px] w-[300px] h-[300px] relative animate__fadeInRight">
           <Image
             src="/images/unnamed.jpg"
             alt="user"

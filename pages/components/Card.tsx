@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({
   links,
 }) => {
   return (
-    <div className="backdrop-blur-lg bg-black rounded-lg	  transform transition-all duration-300    p-3	">
+    <div className="backdrop-blur-lg bg-black rounded-lg hover:bg-[#E31F71]  transform transition-all duration-300    p-3	">
       <div className="flex justify-between items-center mb-2">
         <FolderIcon />
         <div className="flex space-x-3">

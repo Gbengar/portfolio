@@ -1,5 +1,5 @@
 import { Bars3Icon } from "@heroicons/react/20/solid";
-import React from "react";
+import React, { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import NextLink from "next/link";
 
@@ -8,6 +8,12 @@ interface Props {
 }
 
 const NavBar = ({ openNav }: Props) => {
+  const [activeLink, setActiveLink] = useState<string>("home");
+
+  const handleSetActive = (link: string) => {
+    setActiveLink(link);
+  };
+
   return (
     <div className="w-[100%] fixed z-[10000] top-0 h-[12vh] bg-black">
       <div className="flex items-center justify-between w-[90%] mx-auto h-[100%]">
@@ -19,7 +25,12 @@ const NavBar = ({ openNav }: Props) => {
             to="home"
             smooth={true}
             duration={500}
-            className="nav-link cursor-pointer"
+            className={`nav-link cursor-pointer ${
+              activeLink === "home"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-white"
+            }`}
+            onSetActive={() => handleSetActive("home")}
           >
             Home
           </ScrollLink>
@@ -27,7 +38,12 @@ const NavBar = ({ openNav }: Props) => {
             to="about"
             smooth={true}
             duration={500}
-            className="nav-link cursor-pointer"
+            className={`nav-link cursor-pointer ${
+              activeLink === "about"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-white"
+            }`}
+            onSetActive={() => handleSetActive("about")}
           >
             About Me
           </ScrollLink>
@@ -35,7 +51,12 @@ const NavBar = ({ openNav }: Props) => {
             to="projects"
             smooth={true}
             duration={500}
-            className="nav-link cursor-pointer"
+            className={`nav-link cursor-pointer ${
+              activeLink === "projects"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-white"
+            }`}
+            onSetActive={() => handleSetActive("projects")}
           >
             Projects
           </ScrollLink>
@@ -43,7 +64,12 @@ const NavBar = ({ openNav }: Props) => {
             to="contact"
             smooth={true}
             duration={500}
-            className="nav-link cursor-pointer"
+            className={`nav-link cursor-pointer ${
+              activeLink === "contact"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-white"
+            }`}
+            onSetActive={() => handleSetActive("contact")}
           >
             Contact
           </ScrollLink>
@@ -51,7 +77,12 @@ const NavBar = ({ openNav }: Props) => {
             to="resume"
             smooth={true}
             duration={500}
-            className="nav-link cursor-pointer"
+            className={`nav-link cursor-pointer ${
+              activeLink === "resume"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-white"
+            }`}
+            onSetActive={() => handleSetActive("resume")}
           >
             Resume
           </ScrollLink>
