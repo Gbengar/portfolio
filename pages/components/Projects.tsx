@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "./Card";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import GIthubIcon from "./svg/GIthubIcon";
@@ -88,43 +88,47 @@ const projects = [
 ];
 
 const Projects = () => {
-  const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
+  const animatedElementsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    animatedElementsRef.current =
-      document.querySelectorAll(".projects-animate");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate__animated", "animate__flipInX");
-          } else {
-            entry.target.classList.remove(
-              "animate__animated",
-              "animate__flipInX"
-            );
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    animatedElementsRef.current.forEach((el) => observer.observe(el));
-    return () => {
-      if (animatedElementsRef.current) {
-        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
+    animatedElementsRef.current.forEach((el) => {
+      if (el) {
+        observer.observe(el);
       }
+    });
+
+    return () => {
+      animatedElementsRef.current.forEach((el) => {
+        if (el) {
+          observer.unobserve(el);
+        }
+      });
     };
   }, []);
+
   return (
     <div className="pt-[4rem] md:pt-[8rem] pb-[1rem]">
       <h1 className="heading">
         Pro<span className="text-red-700">Ject</span>
       </h1>
-      <div className=" w-[80%] pt-[2rem] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2rem]">
+      <div className="w-[80%] pt-[2rem] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2rem]">
         {projects.map((project, index) => (
-          <div key={index} className="projects-animate">
+          <div
+            key={index}
+            ref={(el) => (animatedElementsRef.current[index] = el)}
+          >
             <Card
               title={project.title}
               description={project.description}

@@ -12,6 +12,7 @@ import Services from "./components/Services";
 const HomePage: React.FC = () => {
   const [nav, setNav] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
   const openNav = () => setNav(true);
   const closeNav = () => setNav(false);
 
@@ -51,16 +52,20 @@ const HomePage: React.FC = () => {
         <NavBar openNav={openNav} activeSection={activeSection} />
         <ParticleBackground>
           <section id="home">
-            <Hero />
+            <Hero key={activeSection === "home" ? "visible" : "hidden"} />
           </section>
           <section id="about">
-            <About />
+            <About key={activeSection === "about" ? "visible" : "hidden"} />
           </section>
           <section id="services">
-            <Services />
+            <Services
+              key={activeSection === "services" ? "visible" : "hidden"}
+            />
           </section>
           <section id="projects">
-            <Projects />
+            <Projects
+              key={activeSection === "projects" ? "visible" : "hidden"}
+            />
           </section>
           <section id="contact">
             <Contact />

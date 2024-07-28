@@ -1,9 +1,12 @@
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import classes from "./Hero.module.scss"; // Assume you have a CSS module for About
 
 const About = () => {
   const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
   const animatedParagraphRef = useRef<HTMLParagraphElement>(null);
+  const animatedImageRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     animatedElementsRef.current = document.querySelectorAll(".about-animate");
@@ -12,49 +15,79 @@ const About = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (entry.target.tagName.toLowerCase() === "p") {
-              entry.target.classList.add(
-                "animate__animated",
-                "animate__fadeInLeft"
-              );
-            } else {
-              entry.target.classList.add(
-                "animate__animated",
-                "animate__fadeInRight"
-              );
-            }
+            setIsVisible(true);
           } else {
-            if (entry.target.tagName.toLowerCase() === "p") {
-              entry.target.classList.remove(
-                "animate__animated",
-                "animate__fadeInLeft"
-              );
-            } else {
-              entry.target.classList.remove(
-                "animate__animated",
-                "animate__fadeInRight"
-              );
-            }
+            setIsVisible(false);
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    animatedElementsRef.current.forEach((el) => observer.observe(el));
     if (animatedParagraphRef.current) {
       observer.observe(animatedParagraphRef.current);
     }
+    if (animatedImageRef.current) {
+      observer.observe(animatedImageRef.current);
+    }
 
     return () => {
-      if (animatedElementsRef.current) {
-        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
-      }
       if (animatedParagraphRef.current) {
         observer.unobserve(animatedParagraphRef.current);
       }
+      if (animatedImageRef.current) {
+        observer.unobserve(animatedImageRef.current);
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      if (animatedParagraphRef.current) {
+        animatedParagraphRef.current.classList.remove(
+          classes.invisible,
+          "animate__animated",
+          "animate__fadeInLeft"
+        );
+        void animatedParagraphRef.current.offsetWidth; // Trigger reflow
+        animatedParagraphRef.current.classList.add(
+          classes.visible,
+          "animate__animated",
+          "animate__fadeInLeft"
+        );
+      }
+      if (animatedImageRef.current) {
+        animatedImageRef.current.classList.remove(
+          classes.invisible,
+          "animate__animated",
+          "animate__fadeInRight"
+        );
+        void animatedImageRef.current.offsetWidth; // Trigger reflow
+        animatedImageRef.current.classList.add(
+          classes.visible,
+          "animate__animated",
+          "animate__fadeInRight"
+        );
+      }
+    } else {
+      if (animatedParagraphRef.current) {
+        animatedParagraphRef.current.classList.remove(
+          classes.visible,
+          "animate__animated",
+          "animate__fadeInLeft"
+        );
+        animatedParagraphRef.current.classList.add(classes.invisible);
+      }
+      if (animatedImageRef.current) {
+        animatedImageRef.current.classList.remove(
+          classes.visible,
+          "animate__animated",
+          "animate__fadeInRight"
+        );
+        animatedImageRef.current.classList.add(classes.invisible);
+      }
+    }
+  }, [isVisible]);
 
   return (
     <div className="min-h-[88vh] pb-[3rem] pt-[10rem] md:pt-[8rem]">
@@ -70,7 +103,7 @@ const About = () => {
             <span className="w-[100px] hidden md:block h-[5px] bg-slate-400 rounded-sm"></span>
             <p
               ref={animatedParagraphRef}
-              className="text-[19px] text-slate-300 w-[80%]"
+              className={`text-[19px] text-slate-300 w-[80%] ${classes.invisible}`}
             >
               I am a trained banker turned engineer, driven by the potential of
               IT to enhance financial services, particularly in developing
@@ -81,7 +114,10 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[400px] w-[300px] h-[300px] relative about-animate">
+        <div
+          ref={animatedImageRef}
+          className={`lg:w-[500px] mx-auto md:mx-0 mt-[2rem] lg:mt-0 lg:h-[400px] w-[300px] h-[300px] relative ${classes.invisible}`}
+        >
           <Image
             src="/images/unnamed.jpg"
             alt="user"

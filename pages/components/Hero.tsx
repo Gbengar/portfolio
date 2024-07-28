@@ -1,42 +1,26 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useEffect, useRef } from "react";
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useRef, useState } from "react";
 import TextEffect from "./TextEffect";
 import Image from "next/image";
 import SocialIcon from "./SocialIcon";
 import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
+import classes from "./Hero.module.scss";
 
-const Hero = ({}) => {
+const Hero = () => {
   const animatedImageRef = useRef<HTMLDivElement>(null);
   const animatedSocialIconRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (entry.target === animatedImageRef.current) {
-              entry.target.classList.add(
-                "animate__animated",
-                "animate__bounceIn"
-              );
-            } else if (entry.target === animatedSocialIconRef.current) {
-              entry.target.classList.add(
-                "animate__animated",
-                "animate__fadeInDown"
-              );
-            }
+            setIsVisible(true);
           } else {
-            if (entry.target === animatedImageRef.current) {
-              entry.target.classList.remove(
-                "animate__animated",
-                "animate__bounceIn"
-              );
-            } else if (entry.target === animatedSocialIconRef.current) {
-              entry.target.classList.remove(
-                "animate__animated",
-                "animate__fadeInDown"
-              );
-            }
+            setIsVisible(false);
           }
         });
       },
@@ -60,6 +44,54 @@ const Hero = ({}) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isVisible) {
+      if (animatedImageRef.current) {
+        animatedImageRef.current.classList.remove(
+          classes.invisible,
+          "animate__animated",
+          "animate__bounceIn"
+        );
+        void animatedImageRef.current.offsetWidth; // Trigger reflow
+        animatedImageRef.current.classList.add(
+          classes.visible,
+          "animate__animated",
+          "animate__bounceIn"
+        );
+      }
+      if (animatedSocialIconRef.current) {
+        animatedSocialIconRef.current.classList.remove(
+          classes.invisible,
+          "animate__animated",
+          "animate__fadeInDown"
+        );
+        void animatedSocialIconRef.current.offsetWidth; // Trigger reflow
+        animatedSocialIconRef.current.classList.add(
+          classes.visible,
+          "animate__animated",
+          "animate__fadeInDown"
+        );
+      }
+    } else {
+      if (animatedImageRef.current) {
+        animatedImageRef.current.classList.remove(
+          classes.visible,
+          "animate__animated",
+          "animate__bounceIn"
+        );
+        animatedImageRef.current.classList.add(classes.invisible);
+      }
+      if (animatedSocialIconRef.current) {
+        animatedSocialIconRef.current.classList.remove(
+          classes.visible,
+          "animate__animated",
+          "animate__fadeInDown"
+        );
+        animatedSocialIconRef.current.classList.add(classes.invisible);
+      }
+    }
+  }, [isVisible]);
+
   return (
     <div className="flex items-center pt-[5rem]">
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] items-center">
@@ -75,7 +107,10 @@ const Hero = ({}) => {
               <ArrowDownTrayIcon className="w-[1.6rem] h-[1.7rem] text-black" />
             </button>
             <div className="space-y-4 mt-4">
-              <div ref={animatedSocialIconRef} className="space-x-4">
+              <div
+                ref={animatedSocialIconRef}
+                className={`space-x-4 ${classes.invisible}`}
+              >
                 <SocialIcon />
               </div>
             </div>
@@ -83,7 +118,7 @@ const Hero = ({}) => {
         </div>
         <div
           ref={animatedImageRef}
-          className="w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px]"
+          className={`w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] ${classes.invisible}`}
           style={{ position: "relative" }}
         >
           <Image
