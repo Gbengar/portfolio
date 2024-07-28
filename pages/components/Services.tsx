@@ -1,40 +1,28 @@
 import { RocketLaunchIcon } from "@heroicons/react/20/solid";
 import { CommandLineIcon } from "@heroicons/react/20/solid";
 import { CodeBracketSquareIcon } from "@heroicons/react/20/solid";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import classes from "./Hero.module.scss"; // Assuming you have a CSS module for Services
 
 const Services = () => {
-  const animatedElementsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [animateContent, setAnimateContent] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(
-              "animate__animated",
-              "animate__jackInTheBox"
-            );
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    animatedElementsRef.current.forEach((el) => {
-      if (el) {
-        observer.observe(el);
-      }
-    });
-
-    return () => {
-      animatedElementsRef.current.forEach((el) => {
-        if (el) {
-          observer.unobserve(el);
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const sectionTop = sectionRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.75) {
+          setAnimateContent(true);
         }
-      });
+      }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const services = [
@@ -65,7 +53,10 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-[88vh] pt-[4rem] md:pt-[8rem] pb-[2rem]">
+    <div
+      ref={sectionRef}
+      className="min-h-[88vh] pt-[4rem] md:pt-[8rem] pb-[2rem]"
+    >
       <p className="heading">
         My <span className="text-yellow-400">Services</span>
       </p>
@@ -73,8 +64,12 @@ const Services = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            ref={(el) => (animatedElementsRef.current[index] = el)}
-            className="backdrop-blur-sm bg-white/30 rounded-lg hover:scale-110 transform transition-all duration-300 hover:rotate-6 font-semibold text-center p-[2rem]"
+            className={`backdrop-blur-sm bg-white/30 rounded-lg hover:scale-110 transform transition-all duration-300 hover:rotate-6 font-semibold text-center p-[2rem] ${
+              animateContent
+                ? `${classes.visible} animate__animated animate__jackInTheBox`
+                : classes.invisible
+            }`}
+            style={{ animationDelay: `${index * 0.2}s` }}
           >
             {service.icon}
             <h1 className="text-[20px] md:text-[30px] mt-[1.5rem] mb-[1.5rem]">

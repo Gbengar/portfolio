@@ -9,91 +9,34 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 import classes from "./Hero.module.scss";
 
 const Hero = () => {
-  const animatedImageRef = useRef<HTMLDivElement>(null);
-  const animatedSocialIconRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [animateContent, setAnimateContent] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          } else {
-            setIsVisible(false);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (animatedImageRef.current) {
-      observer.observe(animatedImageRef.current);
-    }
-    if (animatedSocialIconRef.current) {
-      observer.observe(animatedSocialIconRef.current);
-    }
-
-    return () => {
-      if (animatedImageRef.current) {
-        observer.unobserve(animatedImageRef.current);
-      }
-      if (animatedSocialIconRef.current) {
-        observer.unobserve(animatedSocialIconRef.current);
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const sectionTop = sectionRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.75) {
+          setAnimateContent(true);
+        }
       }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isVisible) {
-      if (animatedImageRef.current) {
-        animatedImageRef.current.classList.remove(
-          classes.invisible,
-          "animate__animated",
-          "animate__bounceIn"
-        );
-        void animatedImageRef.current.offsetWidth; // Trigger reflow
-        animatedImageRef.current.classList.add(
-          classes.visible,
-          "animate__animated",
-          "animate__bounceIn"
-        );
-      }
-      if (animatedSocialIconRef.current) {
-        animatedSocialIconRef.current.classList.remove(
-          classes.invisible,
-          "animate__animated",
-          "animate__fadeInDown"
-        );
-        void animatedSocialIconRef.current.offsetWidth; // Trigger reflow
-        animatedSocialIconRef.current.classList.add(
-          classes.visible,
-          "animate__animated",
-          "animate__fadeInDown"
-        );
-      }
-    } else {
-      if (animatedImageRef.current) {
-        animatedImageRef.current.classList.remove(
-          classes.visible,
-          "animate__animated",
-          "animate__bounceIn"
-        );
-        animatedImageRef.current.classList.add(classes.invisible);
-      }
-      if (animatedSocialIconRef.current) {
-        animatedSocialIconRef.current.classList.remove(
-          classes.visible,
-          "animate__animated",
-          "animate__fadeInDown"
-        );
-        animatedSocialIconRef.current.classList.add(classes.invisible);
-      }
-    }
-  }, [isVisible]);
+  const getAnimationClass = (animation: string) => {
+    return animateContent
+      ? `${classes.visible} animate__animated ${animation}`
+      : classes.invisible;
+  };
 
   return (
-    <div className="flex items-center pt-[5rem]">
+    <div ref={sectionRef} className="flex items-center pt-[5rem]">
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] items-center">
         <div>
           <span className="text-[15px] text-white"> Hi There, I'm </span>
@@ -108,8 +51,9 @@ const Hero = () => {
             </button>
             <div className="space-y-4 mt-4">
               <div
-                ref={animatedSocialIconRef}
-                className={`space-x-4 ${classes.invisible}`}
+                className={`space-x-4 ${getAnimationClass(
+                  "animate__fadeInDown"
+                )}`}
               >
                 <SocialIcon />
               </div>
@@ -117,8 +61,9 @@ const Hero = () => {
           </div>
         </div>
         <div
-          ref={animatedImageRef}
-          className={`w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] ${classes.invisible}`}
+          className={`w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] ${getAnimationClass(
+            "animate__bounceIn"
+          )}`}
           style={{ position: "relative" }}
         >
           <Image

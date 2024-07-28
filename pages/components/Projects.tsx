@@ -3,6 +3,7 @@ import Card from "./Card";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import GIthubIcon from "./svg/GIthubIcon";
 import LinkIcon from "./svg/LinkIcon";
+import classes from "./Hero.module.scss"; // Assuming you have a CSS module for Services
 
 const projects = [
   {
@@ -88,38 +89,28 @@ const projects = [
 ];
 
 const Projects = () => {
-  const animatedElementsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [animateContent, setAnimateContent] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate__animated", "animate__flipInX");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    animatedElementsRef.current.forEach((el) => {
-      if (el) {
-        observer.observe(el);
-      }
-    });
-
-    return () => {
-      animatedElementsRef.current.forEach((el) => {
-        if (el) {
-          observer.unobserve(el);
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const sectionTop = sectionRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.75) {
+          setAnimateContent(true);
         }
-      });
+      }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="pt-[4rem] md:pt-[8rem] pb-[1rem]">
+    <div ref={sectionRef} className="pt-[4rem] md:pt-[8rem] pb-[1rem]">
       <h1 className="heading">
         Pro<span className="text-red-700">Ject</span>
       </h1>
@@ -127,7 +118,12 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            ref={(el) => (animatedElementsRef.current[index] = el)}
+            className={`${
+              animateContent
+                ? `${classes.visible} animate__animated animate__flipInX`
+                : classes.invisible
+            }`}
+            style={{ animationDelay: `${index * 0.2}s` }}
           >
             <Card
               title={project.title}

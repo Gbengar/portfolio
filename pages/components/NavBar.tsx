@@ -38,14 +38,6 @@ const NavBar: React.FC<Props> = ({ openNav, activeSection }) => {
               {link.label}
             </ScrollLink>
           ))}
-          <a
-            href="/GbengaCV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link cursor-pointer text-white"
-          >
-            Resume
-          </a>
         </div>
 
         <div onClick={openNav}>
