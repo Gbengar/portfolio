@@ -23,7 +23,7 @@ const projects = [
     title: "School: Website for Elect High School",
     description:
       "I developed a MERN Fitness store for gym equipment, offering user registration, purchases, scheduling, customer reviews, and discounts. The store features a wide selection of fitness products and allows scheduling appointments with trainers for a holistic fitness experience.",
-    technologies: ["react-redux", "react-select", "MERN", "sass", "timeago.js"],
+    technologies: ["react-redux", "MERN", "timeago.js"],
 
     links: [
       { href: "https://github.com/Gbengar/Fitness-App", Icon: GIthubIcon },
@@ -37,7 +37,7 @@ const projects = [
     title: "MERN Finance Dashboard App",
     description:
       "I built a MERN Finance Dashboard App with Machine Learning predictions. The frontend uses Vite, Redux Toolkit, Material UI, and Recharts for charts. The backend uses Node.js, Express.js, and MongoDB. This setup ensures efficient state management, interactive visuals, and robust server performance.",
-    technologies: ["Vite", "Typescript", "MERN", "Machine Learning", "Rechart"],
+    technologies: ["Typescript", "Machine Learning", "Rechart"],
     links: [
       { href: "https://github.com/Gbengar/school", Icon: GIthubIcon },
       {
@@ -50,12 +50,7 @@ const projects = [
     title: "Storybook App: Post and View User Stories",
     description:
       "I developed a Storybook App where users can post stories, and other users can view them. This app leverages the MERN (MongoDB, Express.js, React, Node.js) stack to create an efficient and scalable platform.",
-    technologies: [
-      "express-handlebars",
-      "passport",
-      "google-oauth20",
-      "morgan",
-    ],
+    technologies: ["express-handlebars", "passport", "google-oauth20"],
     links: [
       {
         href: "https://github.com/Gbengar/travesty_CRUD_DEMO",
