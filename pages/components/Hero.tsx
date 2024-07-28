@@ -9,6 +9,10 @@ import { ArrowDownTrayIcon } from "@heroicons/react/20/solid";
 import classes from "./Hero.module.scss";
 
 const Hero = () => {
+  const openResume = () => {
+    window.open("/GbengaCV.pdf", "_blank");
+  };
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [animateContent, setAnimateContent] = useState(false);
 
@@ -45,8 +49,11 @@ const Hero = () => {
           </h1>
           <TextEffect />
           <div className="mt-[2rem] flex-col space-y-6 sm:space-y-0 sm:space-x-6">
-            <button className="px-[2rem] hover:bg-yellow-400 transition-all duration-200 py-[1rem] text-[18px] font-bold uppercase bg-[#55e6a5] text-black flex items-center space-x-2">
-              <a href="/GbengaCV.pdf"> My Resume</a>
+            <button
+              onClick={openResume}
+              className="px-[2rem] hover:bg-yellow-400 transition-all duration-200 py-[1rem] text-[18px] font-bold uppercase bg-[#55e6a5] text-black flex items-center space-x-2"
+            >
+              My Resume
               <ArrowDownTrayIcon className="w-[1.6rem] h-[1.7rem] text-black" />
             </button>
             <div className="space-y-4 mt-4">
