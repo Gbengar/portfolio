@@ -1,7 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import TextEffect from "./TextEffect";
 import Image from "next/image";
 import SocialIcon from "./SocialIcon";
@@ -13,34 +10,8 @@ const Hero = () => {
     window.open("/GbengaCV.pdf", "_blank");
   };
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [animateContent, setAnimateContent] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const sectionTop = sectionRef.current.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (sectionTop < windowHeight * 0.75) {
-          setAnimateContent(true);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check on mount
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const getAnimationClass = (animation: string) => {
-    return animateContent
-      ? `${classes.visible} animate__animated ${animation}`
-      : classes.invisible;
-  };
-
   return (
-    <div ref={sectionRef} className="flex items-center pt-[5rem]">
+    <div className="flex items-center pt-[5rem]">
       <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] items-center">
         <div>
           <span className="text-[15px] text-white"> Hi There, I'm </span>
@@ -58,9 +29,7 @@ const Hero = () => {
             </button>
             <div className="space-y-4 mt-4">
               <div
-                className={`space-x-4 ${getAnimationClass(
-                  "animate__fadeInDown"
-                )}`}
+                className={`space-x-4 ${classes.visible} animate__animated animate__fadeInDown`}
               >
                 <SocialIcon />
               </div>
@@ -68,16 +37,14 @@ const Hero = () => {
           </div>
         </div>
         <div
-          className={`w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] ${getAnimationClass(
-            "animate__bounceIn"
-          )}`}
+          className={`w-[500px] hidden bg-[#55e6a5] relative lg:flex items-center rounded-full h-[500px] ${classes.visible} animate__animated animate__bounceIn`}
           style={{ position: "relative" }}
         >
           <Image
             key="hero-image"
             src={"/images/100953616.jpeg"}
             alt="user"
-            layout="fill"
+            fill
             className="object-cover rounded-full"
           />
         </div>

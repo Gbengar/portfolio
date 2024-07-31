@@ -23,7 +23,6 @@ const HomePage: React.FC = () => {
       rootMargin: "0px",
       threshold: 0.5,
     };
-
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {

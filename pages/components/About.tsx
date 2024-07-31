@@ -66,8 +66,8 @@ const About = () => {
           <Image
             src="/images/unnamed.jpg"
             alt="user"
-            layout="fill"
-            objectFit="contain"
+            fill
+            style={{ objectFit: "contain" }}
             className="relative z-[11] w-[100%] h-[100%] object-contain"
           />
           <div className="absolute w-[80%] h-[100%] z-[10] bg-[white] top-[-1rem] right-[2rem]"></div>
