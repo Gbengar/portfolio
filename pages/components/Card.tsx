@@ -1,7 +1,6 @@
 // components/Card.tsx
 import React, { useEffect, useRef } from "react";
 import { IconType } from "react-icons";
-import { FaFolder, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import FolderIcon from "./svg/FolderIcon";
 
 interface Link {
