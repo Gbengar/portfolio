@@ -5,35 +5,17 @@ const LinkIcon = () => {
     <button className=" w-10 h-10 flex items-center justify-center rounded-lg  group transition-all duration-300">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        x="0px"
-        y="0px"
-        width="100"
-        height="100"
-        viewBox="0 0 48 48"
+        fill="none"
+        viewBox="0 0 20 20"
+        stroke-width="1.5"
+        stroke="white"
+        className="size-6"
       >
         <path
-          fill="black"
-          stroke="white"
-          d="M6.5,20.5v-5c0-3.3,2.7-6,6-6h10"
-        ></path>
-        <path
-          fill="black"
-          stroke="white"
-          d="M38.5,25.5v10c0,3.3-2.7,6-6,6h-20c-3.3,0-6-2.7-6-6v-7"
-        ></path>
-        <line
-          x1="23.5"
-          x2="41.5"
-          y1="24.5"
-          y2="6.5"
-          fill="black"
-          stroke="white"
-        ></line>
-        <polyline
-          fill="black"
-          stroke="white"
-          points="27.5,6.5 41.5,6.5 41.5,20.5"
-        ></polyline>
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5"
+        />
       </svg>
     </button>
   );
