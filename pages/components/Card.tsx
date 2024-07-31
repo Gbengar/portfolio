@@ -21,35 +21,6 @@ const Card: React.FC<CardProps> = ({
   technologies,
   links,
 }) => {
-  const animatedElementsRef = useRef<NodeListOf<Element> | null>(null);
-
-  useEffect(() => {
-    animatedElementsRef.current =
-      document.querySelectorAll(".projects-animate");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate__animated", "animate__flipInX");
-          } else {
-            entry.target.classList.remove(
-              "animate__animated",
-              "animate__flipInX"
-            );
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    animatedElementsRef.current.forEach((el) => observer.observe(el));
-    return () => {
-      if (animatedElementsRef.current) {
-        animatedElementsRef.current.forEach((el) => observer.unobserve(el));
-      }
-    };
-  }, []);
   return (
     <div className="projects-animate backdrop-blur-lg bg-black rounded-lg hover:bg-[#E31F71]  transform transition-all duration-300    p-3	">
       <div className="flex justify-between items-center mb-2">
